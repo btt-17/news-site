@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  padding: 20px 0 0 20px;
+}
+
+.contents {
+  list-style-type: none;
+}
+
+.contents li {
+  margin-bottom: 15px;
+  opacity: 1;
+  color: rgb(196, 196, 196);
+}
+
+.navSpan {
+  display: flex;
+}
+
+.navSpan span {
+  margin-left: 15px;
+  line-height: 36px;
+}

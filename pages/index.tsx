@@ -5,7 +5,7 @@ import Nav from '../components/nav'
 import styles from '../styles/Home.module.css'
 import WeatherNews from '../components/weather-news'
 import Header from '../components/header'
-import Image from 'next/image'
+import PickupArticle from '../components/pickup-article'
 
 export default function Home(props) {
   return (
@@ -31,9 +31,10 @@ export default function Home(props) {
           </div>
           <div className={styles.aside}>
             <WeatherNews weatherNews={props.weatherNews} />
+            <PickupArticle articles={props.pickupArticles} />
           </div>
         </div>
-     </MainLayout> 
+      </MainLayout> 
   )
 }
 
@@ -58,11 +59,22 @@ export const getStaticProps = async() => {
   const weatherJson = await weatherRes.json();
   const weatherNews = weatherJson;
 
-  
+  // Get pickup news 
+  const keyword = "software"
+  const sortBy = "popularity"
+  const pickupPageSize = 5 
+  const pickupRes = await fetch (
+    `https://newsapi.org/v2/everything?q=${keyword}&language=jp&sortBy=${sortBy}&pageSize=${pickupPageSize}&apiKey=${process.env.NEWS_API_KEY}`
+  )
+  console.log(pickupRes)
+  const pickupJson = await pickupRes.json()
+  const pickupArticles = pickupJson?.articles;
+
   return {
     props: {
       topArticles,
       weatherNews,
+      pickupArticles,
     },
     revalidate: 60 * 10,
   }

@@ -88,7 +88,7 @@ const WeatherNews: React.FC<Props> = ({  weatherNews }) => {
 
   return (
     <section className={styles.weather}>
-      <p className={styles.city}>Tokyo</p>
+      <h1 className={styles.city}>Tokyo</h1>
       <div className={styles.weather__main}>
         <div className={styles.weather__top}>
           <div className={styles.weather__heading}>

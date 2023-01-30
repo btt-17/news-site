@@ -5,10 +5,10 @@
   margin: 30px 20px 0 20px;
 }
 
-.city {
+.weather > h1 {
   font-weight: 1000;
   font-size: 16px;
-  color: rbga(233, 163, 163);
+  color: rgb(233, 163, 163);
   padding: 12px 0;
   border-bottom: 1px solid rgba(150, 133, 133, 0.5);
 }

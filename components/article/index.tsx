@@ -12,7 +12,11 @@ const Article: React.FC<CustomType.Props> = ({ articles, title}) => {
       {articles!.map((article, index) => {
           const time = moment(article.publishedAt || moment.now())
               .fromNow()
-              .slice(0, 1)
+              .slice(0, 1)== "a"
+              ? 1 
+              : moment(article.publishedAt || moment.now())
+                .fromNow()
+                .slice(0, 1)
           return (
             <a href={article.url} key={index} >
               <article className={styles.article__main}>

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import styles from './index.module.css'
 import Link from 'next/link'
-import Props from '../types'
+import CustomType from '../types'
 
 const week = [
   'Sun',
@@ -13,9 +13,24 @@ const week = [
   'Sat'
 ]
 
+// const date1 = {
+//   dt: 1662030000, 
+//   temp: {
+//      min: 18.93,
+//      max: 19.66,
+//    },
+//   weather: [
+//      {
+      
+//        id: 500,
+//        main: "Cloudy",
+//        icon: "04d"
+//      },
+//   ]
+// }
 // dummy weather data 
-const daily = [
-  {
+const dailyWeather  = [
+   {
      dt: 1662030000, 
      temp: {
         min: 18.93,
@@ -77,15 +92,15 @@ const daily = [
 
 ]
 
-const WeatherNews: React.FC<Props> = ({  weatherNews }) => {
+const WeatherNews: React.FC<CustomType.Props> = ({  weatherNews }) => {
   console.log(weatherNews)
-  const currentWeatherMain = weatherNews.weather[0].main
-  const currentWeatherTemp = weatherNews.main.temp 
-  const currentWeatherIcon = weatherNews.weather[0].icon.slice(0,2) + "d"
+  const currentWeatherMain = weatherNews!.weather[0].main
+  const currentWeatherTemp = weatherNews!.main.temp 
+  const currentWeatherIcon = weatherNews!.weather[0].icon.slice(0,2) + "d"
   
+  // console.log("WeatherNews test: ", weatherNews)
   // dummy weather data
-  weatherNews.daily = daily 
-
+  // weatherNews!.daily = dailyWeather
   return (
     <section className={styles.weather}>
       <h1 className={styles.city}>Tokyo</h1>
@@ -110,7 +125,8 @@ const WeatherNews: React.FC<Props> = ({  weatherNews }) => {
         </div>
         <div className={styles.weather__weekly}>
           <ul className={styles.weather__weekly__list}>
-            {weatherNews.daily.map((date, index) => {
+            {/* {weatherNews!.daily.map((date, index) => { */}
+            {dailyWeather.map((date, index) => {
               const time = new Date(date.dt * 1000)
               let day = week[time.getDay()]
               if (index == 0) day = "Today"

@@ -5,9 +5,18 @@ import Nav from '../../components/nav'
 import MainLayout from '../../layouts/index'
 import styles from '../../styles/Home.module.css'
 import Header from '../../components/header'
+import CustomType from '../../components/types'
 
 
-function Topic(props) {
+
+interface PageProps {
+  topicArticles?: CustomType.articlesType,
+  weatherNews?:  CustomType.weatherNewsType,
+  pickupArticles?:CustomType.articlesType,
+  title: string,
+}
+
+function Topic(props: PageProps) {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading...</div>
@@ -17,7 +26,6 @@ function Topic(props) {
       <Head>
         <title>Simple News - {props.title.toUpperCase()}</title>
       </Head>
-
 
        <div className={styles.menu}>     
            <Header  />
@@ -47,7 +55,10 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+
+
+export async function getStaticProps({ params }: any) {
+  console.log("params: ", params, typeof params)
   const topicRes = await fetch (
         `https://newsapi.org/v2/top-headlines?country=jp&category=${params.id}&country=jp&apiKey=${process.env.NEWS_API_KEY}`
   )

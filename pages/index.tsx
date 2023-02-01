@@ -6,8 +6,19 @@ import styles from '../styles/Home.module.css'
 import WeatherNews from '../components/weather-news'
 import Header from '../components/header'
 import PickupArticle from '../components/pickup-article'
+import CustomType from '../components/types'
 
-export default function Home(props) {
+
+
+interface PageProps {
+  topArticles?: CustomType.articlesType,
+  weatherNews?:  CustomType.weatherNewsType,
+  pickupArticles?:CustomType.articlesType,
+}
+
+
+
+export default function Home(props: PageProps) {
   return (
      <MainLayout>
         <Head> 
@@ -66,7 +77,7 @@ export const getStaticProps = async() => {
   const pickupRes = await fetch (
     `https://newsapi.org/v2/everything?q=${keyword}&language=jp&sortBy=${sortBy}&pageSize=${pickupPageSize}&apiKey=${process.env.NEWS_API_KEY}`
   )
-  console.log(pickupRes)
+
   const pickupJson = await pickupRes.json()
   const pickupArticles = pickupJson?.articles;
 

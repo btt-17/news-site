@@ -1,20 +1,20 @@
 import styles from './index.module.css'
 import moment from 'moment'
-import Props from '../types'
+import CustomType from '../types'
 
-const Article: React.FC<Props> = ({ articles, title}) => {
+const Article: React.FC<CustomType.Props> = ({ articles, title}) => {
   return (
     <section className={styles.article}>
       <div className={styles.article__heading}>
-        <h1>{title.charAt(0).toUpperCase()+title.slice(1).toLowerCase()}</h1>
+        <h1>{title!.charAt(0).toUpperCase()+title!.slice(1).toLowerCase()}</h1>
       </div>
 
-      {articles.map((article, index) => {
+      {articles!.map((article, index) => {
           const time = moment(article.publishedAt || moment.now())
               .fromNow()
               .slice(0, 1)
           return (
-            <a href={article.url} key={index} target='_blank' rel='noopener'>
+            <a href={article.url} key={index} >
               <article className={styles.article__main}>
                 <div className={styles.article__title}>
                   <p>{article.title}</p>
@@ -28,6 +28,8 @@ const Article: React.FC<Props> = ({ articles, title}) => {
                       src={article.urlToImage}
                       className={styles.article__img}
                       alt={`${article.title} image`}
+                      width={40}
+                      height={40}
                   />
                 )}
               </article>

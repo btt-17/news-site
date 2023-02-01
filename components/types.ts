@@ -1,17 +1,16 @@
-type Props = {
-  articles?: [
+
+namespace CustomType{
+  export type articlesType = [
     article: {
       author: string
       title: string
       publishedAt: string
       url: string 
       urlToImage: string 
-    }
-  ]
+    } 
+  ] ;
 
-  title?: string 
-
-  weatherNews?: {
+  export type weatherNewsType = {
     weather: [
       {
         id: number 
@@ -19,28 +18,38 @@ type Props = {
         description: string 
         icon: string 
       }
-    ]  
+    ] 
     main: {
       temp: number 
       visibility: number
     }
-  }
 
   daily: [
-    date: {
+    {
       dt: number
-      clouds: number 
       temp: {
         min: number 
         max: number 
       }
       weather: [
-        conditions: {
-          main: string
+        {
           id: number 
+          main: string
           icon: string
         }
       ]
     }
   ]
+  }
+
+  export type Props = {
+    articles?: articlesType
+
+    title?: string ;
+
+    weatherNews?: weatherNewsType
+  }
 }
+
+export default CustomType;
+
